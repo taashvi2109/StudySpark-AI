@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Study Material | StudySpark AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='result.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span>📚</span>
+
+            <h2>StudySpark AI</h2>
+
+        </div>
+
+        <p class="side-text">
+
+            Your AI generated study material is ready.
+            Revise, practice and download everything from one place.
+
+        </p>
+
+        <div class="feature-list">
+
+            <div class="feature">✨ AI Summary</div>
+
+            <div class="feature">📌 Key Points</div>
+
+            <div class="feature">❓ Practice MCQs</div>
+
+            <div class="feature">🧠 Flashcards</div>
+
+            <div class="feature">📖 Easy Explanation</div>
+
+        </div>
+
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <section class="hero">
+
+            <h1>
+
+                Your Study Material
+
+            </h1>
+
+            <h3>
+
+                Successfully Generated ✓
+
+            </h3>
+
+            <p>
+
+                Everything generated from your uploaded notes is organized
+                below for quick revision and practice.
+
+            </p>
+
+        </section>
+
+        <!-- ================= SUMMARY ================= -->
+
+        {% if summary %}
+
+        <div class="result-card">
+
+            <h2>
+
+                ✨ AI Summary
+
+            </h2>
+
+            <div class="result-content">
+
+                <p>
+
+                    {{ summary }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        <!-- ================= KEY POINTS ================= -->
+
+        {% if key_points %}
+
+        <div class="result-card">
+
+            <h2>
+
+                📌 Key Points
+
+            </h2>
+
+            <div class="result-content">
+
+                <ul>
+
+                    {% for point in key_points %}
+
+                    <li>{{ point }}</li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+                <!-- ================= PRACTICE MCQs ================= -->
+
+        {% if mcqs %}
+
+        <div class="result-card">
+
+            <h2>
+
+                ❓ Practice MCQs
+
+            </h2>
+
+            <p class="section-info">
+
+                Solve the question before checking the answer.
+
+            </p>
+
+            {% for mcq in mcqs %}
+
+            <div class="mcq-card">
+
+                <h3>
+
+                    Question {{ loop.index }}
+
+                </h3>
+
+                <p class="question">
+
+                    {{ mcq.question }}
+
+                </p>
+
+                <div class="options">
+
+                    {% for option in mcq.options %}
+
+                    <div class="option">
+
+                        {{ option }}
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+                <button
+
+                    type="button"
+
+                    class="answer-btn"
+
+                    onclick="toggleAnswer('answer{{ loop.index }}',this)">
+
+                    Show Answer
+
+                </button>
+
+                <div
+
+                    class="answer-box"
+
+                    id="answer{{ loop.index }}">
+
+                    <strong>✔ Correct Answer:</strong>
+
+                    {{ mcq.answer }}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+            <div class="mcq-navigation">
+
+                <button
+
+                    type="button"
+
+                    class="nav-btn"
+
+                    onclick="previousQuestion()">
+
+                    ⬅ Previous
+
+                </button>
+
+                <button
+
+                    type="button"
+
+                    class="nav-btn"
+
+                    onclick="nextQuestion()">
+
+                    Next ➡
+
+                </button>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+
+        <!-- ================= FLASHCARDS ================= -->
+
+        {% if flashcards %}
+
+        <div class="result-card">
+
+            <h2>
+
+                🧠 Flashcards
+
+            </h2>
+
+            <div class="flashcard-grid">
+
+                {% for card in flashcards %}
+
+                <div class="flashcard">
+
+                    <div class="flash-question">
+
+                        <strong>Q.</strong>
+
+                        {{ card.question }}
+
+                    </div>
+
+                    <hr>
+
+                    <div class="flash-answer">
+
+                        <strong>A.</strong>
+
+                        {{ card.answer }}
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+
+        <!-- ================= EASY EXPLANATION ================= -->
+
+        {% if easy_explanation %}
+
+        <div class="result-card">
+
+            <h2>
+
+                📖 Easy Explanation
+
+            </h2>
+
+            <div class="easy-card">
+
+                {{ easy_explanation }}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+                <!-- ================= BUTTONS ================= -->
+
+        <div class="button-section">
+<form action="/download_pdf" method="POST">
+
+    <input type="hidden" name="summary" value="{{ summary }}">
+
+    <input type="hidden" name="easy_explanation" value="{{ easy_explanation }}">
+
+    <input
+        type="hidden"
+        name="key_points"
+        value='{{ key_points | tojson }}'>
+
+    <input
+        type="hidden"
+        name="mcqs"
+        value='{{ mcqs | tojson }}'>
+
+    <input
+        type="hidden"
+        name="flashcards"
+        value='{{ flashcards | tojson }}'>
+
+    <button
+        type="submit"
+        class="download-btn">
+
+        📄 Download PDF
+
+    </button>
+
+</form>
+
+                
+
+            <button
+                class="upload-btn"
+                onclick="window.location.href='/'">
+
+                ⬆ Upload New Notes
+
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+let currentQuestion = 0;
+
+const mcqCards = document.querySelectorAll(".mcq-card");
+
+function showQuestion(index){
+
+    mcqCards.forEach(function(card){
+
+        card.style.display = "none";
+
+    });
+
+    if(mcqCards.length > 0){
+
+        mcqCards[index].style.display = "block";
+
+    }
+
+}
+
+function nextQuestion(){
+
+    if(currentQuestion < mcqCards.length - 1){
+
+        currentQuestion++;
+
+        showQuestion(currentQuestion);
+
+    }
+
+}
+
+function previousQuestion(){
+
+    if(currentQuestion > 0){
+
+        currentQuestion--;
+
+        showQuestion(currentQuestion);
+
+    }
+
+}
+
+function toggleAnswer(id, button){
+
+    const answer = document.getElementById(id);
+
+    if(answer.style.display == "block"){
+
+        answer.style.display = "none";
+
+        button.innerHTML = "Show Answer";
+
+    }
+
+    else{
+
+        answer.style.display = "block";
+
+        button.innerHTML = "Hide Answer";
+
+    }
+
+}
+
+if(mcqCards.length > 0){
+
+    showQuestion(0);
+
+}
+
+</script>
+
+</body>
+
+</html>

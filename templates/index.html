@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StudySpark AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='index.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            📚
+
+            <h2>StudySpark AI</h2>
+
+        </div>
+
+        <p class="side-text">
+
+            Everything you need to revise,
+            generated from a single upload.
+
+        </p>
+
+        <div class="feature-list">
+
+            <div class="feature">
+
+                ✨ AI Summary
+
+            </div>
+
+            <div class="feature">
+
+                📌 Key Points
+
+            </div>
+
+            <div class="feature">
+
+                ❓ MCQs
+
+            </div>
+
+            <div class="feature">
+
+                🧠 Flashcards
+
+            </div>
+
+            <div class="feature">
+
+                📖 Easy Explanation
+
+            </div>
+
+            <div class="feature">
+
+                📄 PDF Export
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <section class="hero">
+
+            <h1>
+
+                StudySpark AI
+
+            </h1>
+
+            <h3>
+
+                Transform Notes into Clear Summaries.
+
+            </h3>
+
+            <p>
+
+                Upload your handwritten or printed notes
+                and instantly generate summaries,
+                key points, flashcards,
+                MCQs and simplified explanations.
+
+            </p>
+                    <!-- Upload Card -->
+
+        <div class="upload-card">
+
+            <form
+                action="/upload"
+                method="POST"
+                enctype="multipart/form-data">
+
+                <div class="upload-area">
+
+                    <div class="upload-icon">
+
+                        📂
+
+                    </div>
+
+                    <h2>
+
+                        Upload Your Notes
+
+                    </h2>
+
+                    <p>
+
+                        Drag & Drop your file here
+
+                    </p>
+
+                    <span>
+
+                        or
+
+                    </span>
+
+                    <br><br>
+
+                    <input
+                        type="file"
+                        name="file"
+                        id="fileInput"
+                        accept=".jpg,.jpeg,.png,.pdf"
+                        required
+                        hidden>
+
+                    <label
+                        for="fileInput"
+                        class="choose-btn">
+
+                        Choose File
+
+                    </label>
+
+                    <p
+                        id="file-name"
+                        class="file-name">
+
+                        No file selected
+
+                    </p>
+
+                    <small>
+
+                        Supports JPG, PNG & PDF
+
+                    </small>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="generate-btn">
+
+                    ✨ Generate Study Material
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- What You'll Get -->
+
+        <div class="section-title">
+
+            <h2>
+
+                What You'll Get
+
+            </h2>
+
+            <p>
+
+                Everything you need to revise in one place.
+
+            </p>
+
+        </div>
+
+        <div class="cards">
+
+                        <div class="card">
+
+                <div class="icon">✨</div>
+
+                <h3>AI Summary</h3>
+
+                <p>
+
+                    Get concise and easy-to-understand summaries from your notes.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon">📌</div>
+
+                <h3>Key Points</h3>
+
+                <p>
+
+                    Highlight the most important concepts instantly.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon">❓</div>
+
+                <h3>Practice MCQs</h3>
+
+                <p>
+
+                    Test your understanding with AI-generated questions.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon">🧠</div>
+
+                <h3>Flashcards</h3>
+
+                <p>
+
+                    Revise quickly using interactive question-answer cards.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon">📖</div>
+
+                <h3>Easy Explanation</h3>
+
+                <p>
+
+                    Understand difficult topics in simple language.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon">📄</div>
+
+                <h3>PDF Export</h3>
+
+                <p>
+
+                    Download your complete study material in PDF format.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+const fileInput = document.getElementById("fileInput");
+
+const fileName = document.getElementById("file-name");
+
+fileInput.addEventListener("change", function(){
+
+    if(fileInput.files.length>0){
+
+        fileName.innerHTML=fileInput.files[0].name;
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

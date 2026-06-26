@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Preview | StudySpark AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='preview.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ================= Sidebar ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            📚
+
+            <h2>StudySpark AI</h2>
+
+        </div>
+
+        <p class="side-text">
+
+            Review your extracted notes before generating
+            AI-powered study material.
+
+        </p>
+
+        <div class="feature-list">
+
+            <div class="feature">✨ AI Summary</div>
+
+            <div class="feature">📌 Key Points</div>
+
+            <div class="feature">❓ Practice MCQs</div>
+
+            <div class="feature">🧠 Flashcards</div>
+
+            <div class="feature">📖 Easy Explanation</div>
+
+            <div class="feature">📄 PDF Export</div>
+
+        </div>
+
+    </aside>
+
+    <!-- ================= Main Content ================= -->
+
+    <main class="main-content">
+
+        <section class="hero">
+
+            <h1>
+
+                Preview Extracted Text
+
+            </h1>
+
+            <h3>
+
+                Verify Before Generating
+
+            </h3>
+
+            <p>
+
+                Review or edit the extracted text before generating
+                your study material.
+
+            </p>
+
+        </section>
+
+        <form action="/generate"
+              method="POST"
+              onsubmit="return startGeneration();">
+
+        <!-- ================= Extracted Text ================= -->
+
+        <div class="card extracted-card">
+
+            <h2>
+
+                <span class="card-icon">
+
+                    📄
+
+                </span>
+
+                Extracted Text
+
+            </h2>
+
+            <p class="card-subtitle">
+
+                You can edit the extracted content before generating
+                summaries, flashcards and MCQs.
+
+            </p>
+
+            <textarea
+
+                name="edited_text"
+
+                required>{{ extracted_text }}</textarea>
+
+        </div>
+
+        <br>
+
+        <!-- ================= Generate Card Starts ================= -->
+
+        <div class="card generate-card">
+
+            <h2>
+
+                <span class="card-icon">
+
+                    ⚙️
+
+                </span>
+
+                Generate Study Material
+
+            </h2>
+
+            <p class="card-subtitle">
+
+                Choose what you want StudySpark AI to generate.
+
+            </p>
+                        <div class="options-grid">
+
+                <label class="option-box">
+
+                    <input
+                        type="checkbox"
+                        name="summary"
+                        checked>
+
+                    <span>✨ AI Summary</span>
+
+                </label>
+
+                <label class="option-box">
+
+                    <input
+                        type="checkbox"
+                        name="key_points"
+                        checked>
+
+                    <span>📌 Key Points</span>
+
+                </label>
+
+                <label class="option-box">
+
+                    <input
+                        type="checkbox"
+                        id="mcqs"
+                        name="mcqs"
+                        checked>
+
+                    <span>❓ Practice MCQs</span>
+
+                </label>
+
+                <label class="option-box">
+
+                    <input
+                        type="checkbox"
+                        name="flashcards"
+                        checked>
+
+                    <span>🧠 Flashcards</span>
+
+                </label>
+
+                <label class="option-box">
+
+                    <input
+                        type="checkbox"
+                        name="easy_explanation"
+                        checked>
+
+                    <span>📖 Easy Explanation</span>
+
+                </label>
+
+            </div>
+
+            <div id="mcq-settings" class="settings">
+
+                <div>
+
+                    <label>
+
+                        Number of MCQs
+
+                    </label>
+
+                    <input
+
+                        type="number"
+
+                        name="mcq_count"
+
+                        min="1"
+
+                        max="50"
+
+                        value="10"
+
+                        required>
+
+                    <small class="hint">
+
+                        Enter any value between 1 and 50.
+
+                    </small>
+
+                </div>
+
+                <div>
+
+                    <label>
+
+                        Difficulty
+
+                    </label>
+
+                    <select name="difficulty">
+
+                        <option selected>Auto</option>
+
+                        <option>Easy</option>
+
+                        <option>Medium</option>
+
+                        <option>Hard</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <button
+
+                type="submit"
+
+                class="generate-btn">
+
+                ✨ Generate Study Material
+
+            </button>
+
+        </div>
+
+        </form>
+                <!-- ================= Loading Screen ================= -->
+
+        <div id="loading-screen">
+
+            <div class="loader-box">
+
+                <div class="loader"></div>
+
+                <h2>StudySpark AI</h2>
+
+                <p>Generating your study material...</p>
+
+                <small>Please wait a few seconds.</small>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+const mcqCheckbox = document.getElementById("mcqs");
+const mcqSettings = document.getElementById("mcq-settings");
+
+function toggleMCQSettings(){
+
+    if(mcqCheckbox.checked){
+
+        mcqSettings.style.display = "grid";
+
+    }
+
+    else{
+
+        mcqSettings.style.display = "none";
+
+    }
+
+}
+
+mcqCheckbox.addEventListener("change", toggleMCQSettings);
+
+toggleMCQSettings();
+
+function startGeneration(){
+
+    document.getElementById("loading-screen").style.display = "flex";
+
+    const btn = document.querySelector(".generate-btn");
+
+    btn.disabled = true;
+
+    btn.innerHTML = "Generating...";
+
+    return true;
+
+}
+
+</script>
+
+</body>
+
+</html>

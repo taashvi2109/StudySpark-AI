@@ -1,0 +1,654 @@
+/* ===================================
+            RESET
+=================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#F7F4EC;
+    color:#222;
+}
+
+/* ===================================
+            LAYOUT
+=================================== */
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+/* ===================================
+            SIDEBAR
+=================================== */
+
+.sidebar{
+
+    width:230px;
+    height:100vh;
+
+    position:fixed;
+    left:0;
+    top:0;
+
+    background:#12372A;
+    color:white;
+
+    padding:30px 22px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.logo h2{
+    font-size:24px;
+}
+
+.side-text{
+    color:#DDE8DF;
+    font-size:15px;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.feature-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.feature{
+
+    background:rgba(255,255,255,.08);
+
+    padding:12px 16px;
+
+    border-radius:10px;
+}
+
+/* ===================================
+            MAIN
+=================================== */
+
+.main-content{
+
+    margin-left:230px;
+
+    width:calc(100% - 230px);
+
+    padding:40px;
+
+}
+
+/* ===================================
+            HERO
+=================================== */
+
+.hero{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.hero h1{
+
+    font-size:52px;
+
+    color:#12372A;
+
+    margin-bottom:8px;
+
+}
+
+.hero h3{
+
+    color:#4F6F52;
+
+    margin-bottom:10px;
+
+}
+
+.hero p{
+
+    width:70%;
+
+    margin:auto;
+
+    color:#666;
+
+    line-height:1.7;
+
+}
+
+/* ===================================
+            RESULT CARDS
+=================================== */
+
+.result-card{
+
+    background:#F5FAF6;
+
+    border:1px solid #D7E5DA;
+
+    border-radius:18px;
+
+    padding:28px;
+
+    margin-bottom:28px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.06);
+
+}
+
+/* ===================================
+            CARD HEADINGS
+=================================== */
+
+.result-card h2{
+
+    color:#12372A;
+
+    font-size:28px;
+
+    margin-bottom:18px;
+
+    font-weight:700;
+
+}
+
+.card-icon{
+
+    margin-right:8px;
+
+}
+
+/* ===================================
+            CONTENT
+=================================== */
+
+.result-content{
+
+    color:#444;
+
+    line-height:1.9;
+
+    font-size:16px;
+
+}
+
+/* ===================================
+            SUMMARY
+=================================== */
+
+.result-content p{
+
+    text-align:justify;
+
+    margin-bottom:16px;
+
+}
+
+/* ===================================
+            KEY POINTS
+=================================== */
+
+.result-content ul{
+
+    list-style:none;
+
+}
+
+.result-content li{
+
+    background:#EEF7F0;
+
+    border-left:4px solid #12372A;
+
+    padding:14px 18px;
+
+    margin-bottom:12px;
+
+    border-radius:10px;
+
+}
+
+/* ===================================
+            SECTION INFO
+=================================== */
+
+.section-info{
+
+    color:#666;
+
+    margin-bottom:20px;
+
+    font-size:15px;
+
+}
+
+/* ===================================
+            MCQ CARD
+=================================== */
+
+.mcq-card{
+
+    background:#EEF7F0;
+
+    border:1px solid #D9E8DD;
+
+    border-radius:16px;
+
+    padding:24px;
+
+    margin-top:22px;
+
+}
+
+.mcq-card h3{
+
+    color:#12372A;
+
+    font-size:22px;
+
+    margin-bottom:15px;
+
+}
+
+.question{
+
+    font-size:17px;
+
+    color:#333;
+
+    line-height:1.7;
+
+    margin-bottom:22px;
+
+    font-weight:600;
+
+}
+
+/* ===================================
+            OPTIONS
+=================================== */
+
+.options{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    margin-bottom:20px;
+
+}
+
+.option{
+
+    background:hwb(134 91% 2%);
+
+    border:1px solid #D6E5D9;
+
+    border-radius:10px;
+
+    padding:13px 16px;
+
+    font-size:15px;
+
+    color:#333;
+
+}
+
+.option:hover{
+
+    background:#EAF5ED;
+
+}
+
+/* ===================================
+        ANSWER BUTTON
+=================================== */
+
+.answer-btn{
+
+    background:#12372A;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:10px 22px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+}
+
+.answer-btn:hover{
+
+    background:#1C4A39;
+
+}
+
+/* ===================================
+            ANSWER BOX
+=================================== */
+
+.answer-box{
+
+    display:none;
+
+    margin-top:18px;
+
+    background:#EAF7EE;
+
+    border-left:4px solid #12372A;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    color:#12372A;
+
+    line-height:1.7;
+
+}
+/* ===================================
+        MCQ NAVIGATION
+=================================== */
+
+.mcq-navigation{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:22px;
+
+}
+
+.nav-btn{
+
+    background:#12372A;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:10px 22px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+}
+
+.nav-btn:hover{
+
+    background:#1C4A39;
+
+}
+
+/* ===================================
+        FLASHCARDS
+=================================== */
+
+.flashcard-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:18px;
+
+}
+
+.flashcard{
+
+    background:#EEF7F0;
+
+    border:1px solid #D8E7DB;
+
+    border-radius:15px;
+
+    padding:20px;
+
+}
+
+.flash-question{
+
+    font-weight:700;
+
+    color:#12372A;
+
+    margin-bottom:12px;
+
+}
+
+.flash-answer{
+
+    color:#444;
+
+    line-height:1.7;
+
+}
+
+/* ===================================
+        EASY EXPLANATION
+=================================== */
+
+.easy-card{
+
+    background:#EEF7F0;
+
+    border-left:5px solid #12372A;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    line-height:1.9;
+
+    color:#333;
+
+}
+
+/* ===================================
+        BUTTON SECTION
+=================================== */
+
+.button-section{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:18px;
+
+    margin:35px 0;
+
+    flex-wrap:wrap;
+
+}
+
+.download-btn,
+.upload-btn{
+
+    padding:13px 28px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.download-btn{
+
+    background:#12372A;
+
+    color:white;
+
+}
+
+.upload-btn{
+
+    background:#E8F4EB;
+
+    color:#12372A;
+
+    border:1px solid #CFE1D4;
+
+}
+
+.download-btn:hover{
+
+    background:#1C4A39;
+
+}
+
+.upload-btn:hover{
+
+    background:#DCEEDF;
+
+}
+/* ===================================
+            SCROLLBAR
+=================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#EEF6F0;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#4F6F52;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#12372A;
+
+}
+
+/* ===================================
+            RESPONSIVE
+=================================== */
+
+@media(max-width:900px){
+
+    .dashboard{
+
+        flex-direction:column;
+
+    }
+
+    .sidebar{
+
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+
+    }
+
+    .main-content{
+
+        margin-left:0;
+
+        width:100%;
+
+        padding:25px;
+
+    }
+
+    .hero p{
+
+        width:100%;
+
+    }
+
+    .flashcard-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .hero h1{
+
+        font-size:38px;
+
+    }
+
+    .hero h3{
+
+        font-size:20px;
+
+    }
+
+    .result-card{
+
+        padding:20px;
+
+    }
+
+    .button-section{
+
+        flex-direction:column;
+
+    }
+
+    .download-btn,
+    .upload-btn{
+
+        width:100%;
+
+    }
+
+    .mcq-navigation{
+
+        flex-direction:column;
+
+        gap:12px;
+
+    }
+
+}
